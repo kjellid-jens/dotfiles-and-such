@@ -1,4 +1,6 @@
 " editor settings {
+    
+    " enable filetype detection and some other stuff...
     filetype plugin indent on
 
     " set colorscheme          
@@ -102,6 +104,10 @@
     " move up/down
     map <S-l> <C-u>
     map <S-h> <C-d>
+
+    " move between tabs
+    map <S-Left> gT
+    map <S-Right> gt
     
     " list buffers
     map <up> :ls<ENTER>
@@ -110,9 +116,11 @@
     map <left> :bN<ENTER>
     map <right> :bn<ENTER>
 
-    " move between tabs
-    map <S-Left> gT
-    map <S-Right> gt
+    " split window
+    map <S-Up> <C-w>v
+    map <S-Down> <C-w>s
+    " move between splits
+    map <S-Tab> <C-w><C-w>
 
     " <enter> adds new line without entering insert mode
     map <S-Enter> O<Esc>
@@ -126,11 +134,15 @@
     " refresh vim to use current .vimrc
     map <leader>rr :source $MYVIMRC<ENTER><leader>ch
 
+    " open/close quickfix
+    map <leader>co :copen<ENTER>
+    map <leader>cc :cclose<ENTER>
+
     " open nerdtree
     map <leader>ne :NERDTree<cr>
 
     " clear ctrlp cache
-    map <leader>cc :CtrlPClearCache<cr>
+    map <leader>cp :CtrlPClearCache<cr>
 
     " toggle tagbar
     map <leader>tb :TagbarToggle<CR>
@@ -147,7 +159,6 @@
     let g:ctrlp_map = '<leader>p'
 
     " syntastic settings
-    let g:syntastic_enable_signs=1
     let g:syntastic_check_on_open = 1
     let g:syntastic_echo_current_error = 1
 
