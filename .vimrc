@@ -100,24 +100,23 @@
     let g:mapleader = ' '
 
     " move up/down
-    nnoremap <up> <C-u>
-    nnoremap <down> <C-d>
-    nnoremap <S-l> <C-u>
-    nnoremap <S-h> <C-d>
-
+    map <S-l> <C-u>
+    map <S-h> <C-d>
+    
+    " list buffers
+    map <up> :ls<ENTER>
     " switch between buffers
-    nnoremap <left> :bN<Enter>
-    nnoremap <right> :bn<Enter>
+    map <down> :e#<ENTER>
+    map <left> :bN<ENTER>
+    map <right> :bn<ENTER>
 
     " move between tabs
-    nnoremap <S-Left> gT
-    nnoremap <S-Right> gt
-    inoremap <S-Left> gT
-    inoremap <S-Right> gt
+    map <S-Left> gT
+    map <S-Right> gt
 
     " <enter> adds new line without entering insert mode
-    nnoremap <S-Enter> O<Esc>
-    nnoremap <CR> o<Esc>
+    map <S-Enter> O<Esc>
+    map <CR> o<Esc>
 
     " clear highlighting
     map <silent><leader>ch :noh<ENTER>
@@ -125,16 +124,16 @@
     " open .vimrc
     map <silent><leader>re :e $MYVIMRC<ENTER>  
     " refresh vim to use current .vimrc
-    map <leader>rr :source $MYVIMRC<ENTER>  
+    map <leader>rr :source $MYVIMRC<ENTER><leader>ch
 
     " open nerdtree
-    nnoremap <leader>ne :NERDTree<cr>
+    map <leader>ne :NERDTree<cr>
 
     " clear ctrlp cache
     map <leader>cc :CtrlPClearCache<cr>
 
     " toggle tagbar
-    nmap <leader>tb :TagbarToggle<CR>
+    map <leader>tb :TagbarToggle<CR>
 
 " }
 
