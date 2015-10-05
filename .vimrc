@@ -147,13 +147,14 @@
 
     " activate emmet
     imap <S-Tab> <C-y>,
+
     " toggle tagbar
     map <leader>tb :TagbarToggle<cr>
+
     " remove trailing whitespace
     map <leader>fw :FixWhitespace<cr>
 
 " }
-
 " plugin settings {
 
     " nerdtree
