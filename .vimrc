@@ -1,19 +1,39 @@
 " editor settings {
-    
+
     " enable filetype detection and some other stuff...
     filetype plugin indent on
 
-    " set colorscheme          
+    " set colorscheme
     set background=dark
     if has("gui_running")
         colorscheme macvim
     endif
 
+    " cuztomize statusline (not currently customized)
+    " set statusline=
+
+    " remove menu bar
+    set guioptions-=m
+    " remove toolbar
+    set guioptions-=T
+    " remove right-hand scroll bar
+    set guioptions-=r
+    " remove left-hand scroll bar
+    set guioptions-=L
+    " disable cursor blinking
+    "
+    set guicursor=a:blinkon0
+
+    " set indentation length
+    set expandtab
+    set shiftwidth=4
+    set softtabstop=4
+
     " enable syntax highlighting
     syntax enable
 
-    " disable cursor blinking
-    set guicursor=a:blinkon0
+    " show line numbers
+    set number
 
     " enable backspace text deletion
     set backspace=indent,eol,start
@@ -24,10 +44,13 @@
     " shorter messages
     set shortmess=a
 
+    " incrementally match search
+    set incsearch
+
     " highlight search results
     set hlsearch
 
-    " when searching try to be smart about cases 
+    " when searching try to be smart about cases
     set smartcase
 
     " ignore case when searching
@@ -39,17 +62,11 @@
     " disable visual bell
     set t_vb=
 
-    " cuztomize statusline (not currently customized)
-    " set statusline=
-
     " always display status line
     set laststatus=2
 
     " turn on the wiLd menu
     set wildmenu
-
-    " incrementally match search
-    set incsearch
 
     " allows cursor to be in invalid locations
     set virtualedit=all
@@ -63,31 +80,11 @@
     " show partial commands in the last line of the screen
     set showcmd
 
-    " show line numbers
-    set number
-
     " disable creation of swap files
     set noswapfile
 
-    " set indentation length
-    set expandtab
-    set shiftwidth=4
-    set softtabstop=4
-
     " set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
-
-    " remove menu bar
-    set guioptions-=m  
-
-    " remove toolbar
-    set guioptions-=T  
-
-    " remove right-hand scroll bar
-    set guioptions-=r  
-
-    " remove left-hand scroll bar
-    set guioptions-=L  
 
     " check file change every 4 seconds ('CursorHold') and reload the buffer upon detecting change
     set autoread
@@ -108,13 +105,13 @@
     " move between tabs
     map <S-Left> gT
     map <S-Right> gt
-    
+
     " list buffers
-    map <up> :ls<ENTER>
+    map <up> :ls<cr>
     " switch between buffers
-    map <down> :e#<ENTER>
-    map <left> :bN<ENTER>
-    map <right> :bn<ENTER>
+    map <down> :e#<cr>
+    map <left> :bN<cr>
+    map <right> :bn<cr>
 
     " split window
     map <S-Up> <C-w>v
@@ -127,25 +124,33 @@
     map <CR> o<Esc>
 
     " clear highlighting
-    map <silent><leader>ch :noh<ENTER>
+    map <silent><leader>ch :noh<cr>
 
     " open .vimrc
-    map <silent><leader>re :e $MYVIMRC<ENTER>  
+    map <silent><leader>re :e $MYVIMRC<cr>
     " refresh vim to use current .vimrc
-    map <leader>rr :source $MYVIMRC<ENTER><leader>ch
+    map <leader>rr :source $MYVIMRC<cr><leader>ch
 
     " open/close quickfix
-    map <leader>co :copen<ENTER>
-    map <leader>cc :cclose<ENTER>
+    map <leader>co :copen<cr>
+    map <leader>cc :cclose<cr>
 
     " open nerdtree
     map <leader>ne :NERDTree<cr>
 
+    " open ctrlp
+    let g:ctrlp_map = '<leader>p'
     " clear ctrlp cache
     map <leader>cp :CtrlPClearCache<cr>
 
+    " activate easymotion
+    map <Leader> <Plug>(easymotion-prefix)
+
     " toggle tagbar
-    map <leader>tb :TagbarToggle<CR>
+    map <leader>tb :TagbarToggle<cr>
+
+    " remove trailing whitespace
+    map <leader>fw :FixWhitespace<cr>
 
 " }
 
@@ -156,7 +161,6 @@
 
     " ctrlp settings
     let g:ctrlp_working_path_mode = "rw"
-    let g:ctrlp_map = '<leader>p'
 
     " syntastic settings
     let g:syntastic_check_on_open = 1
@@ -170,48 +174,56 @@
 
     " handles installation of plugins
     " activate with :PluginInstall
+    " documentation at :help vundle
     Plugin 'gmarik/Vundle.vim'
 
     " script library (dependency for certain plugins)
     " documentation at :help l9
     Plugin 'L9'
 
-    " activate with <leader>ne
-    " documentation at :help nerdtree
-    Plugin 'scrooloose/nerdtree'
-
-    " activate with <leader>p
-    " documentation at :help ctrlp
-    Plugin 'kien/ctrlp.vim'
-
-    " activate with gcc (current line) and gc (visual mode)
-    " documentation at :help commentary
-    Plugin 'tpope/vim-commentary'
-
-    " toggle with :GitGutterToggle
-    " documentation at :help gitgutter
-    Plugin 'airblade/vim-gitgutter'
-
+    " handles syntax checking
     " documentation at :help syntastic
     Plugin 'scrooloose/syntastic'
 
-    " documentation at :help surround
-    Plugin 'tpope/vim-surround'
+    " improved statusline
+    " documentation at :help Powerline
+    Plugin 'Lokaltog/vim-powerline'
 
-    Plugin 'tpope/vim-repeat'
+    " displays git diff in sidebar
+    " toggle with :GitGutterToggle
+    " documentation at :help gitgutter
+    Plugin 'airblade/vim-gitgutter'
 
     " git wrapper
     " documentation at :help fugitive
     Plugin 'tpope/vim-fugitive'
 
-    Plugin 'tpope/vim-unimpaired'
+    " file tree explorer
+    " activate with <leader>ne
+    " documentation at :help nerdtree
+    Plugin 'scrooloose/nerdtree'
 
-    Plugin 'mattn/emmet-vim'
+    " Fuzzy finder
+    " activate with <leader>p
+    " documentation at :help ctrlp
+    Plugin 'kien/ctrlp.vim'
 
+    " search tool
     " activate with :Ag followed by search terms
     " documentation at :help ag
     Plugin 'rking/ag.vim'
 
+    " enables easy line navigation
+    " activate with <leader>{command}/{motion}
+    " documentation at :help easymotion
+    Plugin 'Lokaltog/vim-easymotion'
+
+    " enables easy commenting
+    " activate with gcc for current line, gc for visual mode
+    " documentation at :help commentary
+    Plugin 'tpope/vim-commentary'
+
+    " enables insert completion
     " activate with <tab> after typing something
     " documentation at :help supertab
     Plugin 'ervandew/supertab'
@@ -220,17 +232,19 @@
     " documentation at :help tagbar
     Plugin 'majutsushi/tagbar'
 
-    Plugin 'christoomey/vim-tmux-navigator'
+    " expanded repeat functionality
+    Plugin 'tpope/vim-repeat'
 
-    " improved statusline
-    " documentation at :help Powerline
-    Plugin 'Lokaltog/vim-powerline'
+    " enables removing trailing whitespace
+    " activate with <leader>fw
+    Plugin 'bronson/vim-trailing-whitespace'
 
-    " activate with <leader><leader>{command}/{motion}
-    " documentation at :help easymotion
-    Plugin 'Lokaltog/vim-easymotion'
+    " handles automatic closing of character pairs
+    Plugin 'Townk/vim-autoclose'
 
-    " compatibility improvements 
+    Plugin 'mattn/emmet-vim'
+
+    " compatibility improvements
     Plugin 'othree/html5.vim'
     Plugin 'tpope/vim-haml'
     Plugin 'slim-template/vim-slim'
@@ -239,7 +253,7 @@
     Plugin 'kchmck/vim-coffee-script'
     Plugin 'elzr/vim-json'
     " documentation at :help pymode
-    Plugin 'klen/python-mode' 
+    Plugin 'klen/python-mode'
     Plugin 'vim-ruby/vim-ruby'
     " documentation at :help rails
     Plugin 'tpope/vim-rails'
