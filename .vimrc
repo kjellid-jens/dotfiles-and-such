@@ -134,7 +134,6 @@
     " open/close quickfix
     map <leader>co :copen<cr>
     map <leader>cc :cclose<cr>
-
     " open nerdtree
     map <leader>ne :NERDTree<cr>
 
@@ -144,11 +143,12 @@
     map <leader>cp :CtrlPClearCache<cr>
 
     " activate easymotion
-    map <Leader> <Plug>(easymotion-prefix)
+    map <leader> <Plug>(easymotion-prefix)
 
+    " activate emmet
+    imap <S-Tab> <C-y>,
     " toggle tagbar
     map <leader>tb :TagbarToggle<cr>
-
     " remove trailing whitespace
     map <leader>fw :FixWhitespace<cr>
 
@@ -156,13 +156,13 @@
 
 " plugin settings {
 
-    " nerdtree settings
+    " nerdtree
     let g:NERDTreeChDirMode = 2
 
-    " ctrlp settings
+    " ctrlp
     let g:ctrlp_working_path_mode = "rw"
 
-    " syntastic settings
+    " syntastic
     let g:syntastic_check_on_open = 1
     let g:syntastic_echo_current_error = 1
 
@@ -218,6 +218,10 @@
     " documentation at :help easymotion
     Plugin 'Lokaltog/vim-easymotion'
 
+    " enables fast coding of markup languages
+    " documentation at :help emmet
+    Plugin 'mattn/emmet-vim'
+
     " enables easy commenting
     " activate with gcc for current line, gc for visual mode
     " documentation at :help commentary
@@ -241,8 +245,6 @@
 
     " handles automatic closing of character pairs
     Plugin 'Townk/vim-autoclose'
-
-    Plugin 'mattn/emmet-vim'
 
     " compatibility improvements
     Plugin 'othree/html5.vim'
