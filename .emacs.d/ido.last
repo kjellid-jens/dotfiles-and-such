@@ -1,0 +1,31 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/Users/" . "JensKjellid/")
+ ("/Users/JensKjellid/" . "workspace/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/Users/JensKjellid/workspace/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "shitty_program.c"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/Users/JensKjellid/workspace/" (22035 5637 0 0) "vim/" "shitty_program.c" "rails/" "programs/" "npm-debug.log" "learning/" "laravel/" "javascript/" "java/" "ios/" "games/" "dotnet/" "django/" "angular/" "AndroidApplication/" "[Vundle] Installer" ".DS_Store" "../" "./")
+
+ ("/Users/" (21893 24282 0 0) "Shared/" "JensKjellid/" "Guest/" ".localized" "../" "./")
+
+ ("/Users/JensKjellid/" (22035 35907 0 0) "workspace/" "Public/" "pslog.txt" "Pictures/" "node_modules/" "names.txt" "Music/" "Movies/" "Makefile" "Library/" "images/" "Google Drive/" "Dropbox/" "Downloads/" "Documents/" "Desktop/" "config.status" "config.log" "compat/" "bash_scripts/" "arguments.c" "Applications/" ".zshrc" ".zshenv" ".zprofile" ".zpreztorc" ".zprezto/" ".zlogout" ".zlogin" ".Xauthority" ".vimrc" ".viminfo" ".vim-fuf-data/" ".vim/" ".Trash/" ".swp" ".subversion/" ".sh_history" ".Seagate/" ".Rsupport/" ".rnd" ".npm/" ".node-gyp/" ".local/" ".lesshst" ".hgignore_global" ".gitignore_global" ".gitconfig" ".git/" ".emacs.d/" ".DS_Store" ".dropbox/" ".deps/" ".config/" ".cache/" ".bash_profile" ".bash_history" ".android/" "../" "./")
+
+ ("/Users/JensKjellid/Downloads/" (22035 6444 0 0) "tmux-2.0/" "The Wind Rises (2013) 1080p [Jpn & Eng] Blu-ray (Studio Ghibli)/" "The West Wing Deluxe DVD Boxset Season 1, 2, 3, 4, 5, 6 & 7 + Extras (Extra Episode's etc)/" "Supernatural Season 6/" "Spy.2015.HDRip.XviD-ETRG/" "Primer.2004.720p.WEB-DL.H264-IY [PublicHD]/" "Marvels Daredevil S01 WEBRip x264-MiXED[ettv]/" "Louis Theroux/" "Kick-Ass 2 (2013) 1417/" "Jurassic Park (1993)/" "Howl's.Moving.Castle.2004.1080p.BrRip.x264.AAC.5.1.{The Hated}.【ThumperDC】/" "How.to.Train.Your.Dragon.2.2014.HDRip.XViD-juggs[ETRG]/" "CVJensKjellid.docx" "CSharpYellowBook.pdf" "BBC.Louis.Therouxs.LA.Stories.2of3.Edge.of.Life.PDTV.x264.AAC.MVGroup.org1042.mp4" "BBC.Louis.Theroux.Transgender.Kids.720p.HDTV.x264.AAC.MVGroup.org2700.mp4" "Akira (1988) 1080p [Eng 5.1 & Jpn 5.1 + Subs] Blu-ray/" "[HorribleSubs] Fate Stay Night - Unlimited Blade Works - 25 [720p].mkv" "[CBM] Sword Art Online 1-25 Complete (Dual Audio) [BDRip-720p-8bit]/" "310 to Yuma (2007)/" ".DS_Store" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
