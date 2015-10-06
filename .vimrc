@@ -4,6 +4,7 @@
     set background=dark
     if has("gui_running")
         colorscheme macvim
+        set lines=90
     endif
 
     " set default working directory
@@ -178,6 +179,9 @@
     noremap <S-Enter> O<Esc>
     noremap <CR> o<Esc>
 
+    " add new line above cursor
+    inoremap <S-Enter> <Esc>O
+
     " delete line in insert mode
     inoremap <C-d> <Esc>ddi
 
@@ -208,10 +212,10 @@
     noremap <leader>cp :CtrlPClearCache<CR>
 
     " activate easymotion
-    noremap <leader> <Plug>(easymotion-prefix)
+    map <leader> <Plug>(easymotion-prefix)
 
     " activate emmet
-    inoremap <C-e> <C-y>,
+    map <C-e> <C-y>,
 
     " toggle tagbar
     noremap <leader>tb :TagbarToggle<CR>
