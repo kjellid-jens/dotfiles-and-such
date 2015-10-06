@@ -1,16 +1,20 @@
-" editor settings {
-
-    cd $HOME/workspace
-
-    " enable filetype plugins
-    filetype plugin on
-    filetype indent on
+" - - - - - - - - - - EDITOR SETTINGS - - - - - - - - - - "
 
     " set colorscheme
     set background=dark
     if has("gui_running")
         colorscheme macvim
     endif
+
+    " set default working directory
+    cd $HOME/workspace
+
+    " enable filetype plugins
+    filetype plugin on
+    filetype indent on
+
+    " enable syntax highlighting
+    syntax enable
 
     " cuztomize statusline (not currently customized)
     " set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
@@ -40,14 +44,14 @@
     set autoindent
     set smartindent
 
-    " enable syntax highlighting
-    syntax enable
-
     " show line numbers
     set number
 
     " enable backspace text deletion
     set backspace=indent,eol,start
+
+    " enable folding
+    set foldenable
 
     " use UTF-8 as character encoding
     set encoding=utf8
@@ -61,13 +65,13 @@
     " highlight search results
     set hlsearch
 
-    " Ignore case when searching
+    " ignore case when searching
     set ignorecase
 
     " when searching try to be smart about cases
     set smartcase
 
-    " Don't redraw while executing macros
+    " don't redraw while executing macros
     set lazyredraw
 
     " disable error sound
@@ -104,21 +108,21 @@
     set autoread
     au CursorHold * checktime
 
-    " Return to last edit position when opening files
+    " return to last edit position when opening files
     autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
 
-    " Remember info about open buffers on close
+    " remember info about open buffers on close
     set viminfo^=%
 
-" }
 
-" plugin settings {
+" - - - - - - - - - - PLUGIN SETTINGS - - - - - - - - - - "
 
     " nerdtree
     let g:NERDTreeChDirMode = 2
+    let NERDTreeShowHidden=1
 
     " ctrlp
     let g:ctrlp_switch_buffer = 0
@@ -129,19 +133,22 @@
     let g:syntastic_check_on_open = 1
     let g:syntastic_echo_current_error = 1
 
-" }
-
-" keybindings {
+" - - - - - - - - - -  KEY BINDINGS - - - - - - - - - - "
 
     " map <leader> to space bar
     let mapleader = ' '
     let g:mapleader = ' '
 
-    map <leader>w :w<cr>
+    " quick save
+    map <leader><leader>w :w<cr>
 
     " move up/down
-    map <S-l> <C-u>
-    map <S-h> <C-d>
+    map <S-k> <C-u>
+    map <S-j> <C-d>
+
+    " move to far left/right
+    map <S-l> $
+    map <S-h> 0
 
     " move between tabs
     map <S-Left> gT
@@ -155,13 +162,10 @@
     map <left> :bN<cr>
     map <right> :bn<cr>
 
-    " Close the current buffer
-    map <leader>bd :Bclose<cr>
+    " close the current buffer
+    map <leader>db :Bclose<cr>
 
-    " Close all the buffers
-    map <leader>ba :1,1000 bd!<cr>
-
-    " Switch CWD to the directory of the open buffer
+    " switch CWD to the directory of the open buffer
     map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
     " split window
@@ -193,7 +197,7 @@
     map <leader>co :copen<cr>
     map <leader>cc :cclose<cr>
     " open nerdtree
-    map <leader>ne :NERDTree<cr>
+    map <leader>nt :NERDTreeToggle<cr>
 
     " open ctrlp
     let g:ctrlp_map = '<leader>p'
@@ -204,7 +208,7 @@
     map <leader> <Plug>(easymotion-prefix)
 
     " activate emmet
-    imap <S-Tab> <C-y>,
+    imap <C-e> <C-y>,
 
     " toggle tagbar
     map <leader>tb :TagbarToggle<cr>
@@ -212,9 +216,10 @@
     " remove trailing whitespace
     map <leader>fw :FixWhitespace<cr>
 
-" }
+    " toggle gundo
+    map <leader>gu :GundoToggle<cr>
 
-" functions {
+" - - - - - - - - - - FUNCTIONS - - - - - - - - - - "
 
     function! CmdLine(str)
         exe "menu Foo.Bar :" . a:str
@@ -243,7 +248,7 @@
         let @" = l:saved_reg
     endfunction
 
-    " Returns true if paste mode is enabled
+    " returns true if paste mode is enabled
     function! HasPaste()
         if &paste
             return 'PASTE MODE  '
@@ -251,7 +256,7 @@
         return ''
     endfunction
 
-    " Don't close window, when deleting a buffer
+    " don't close window, when deleting a buffer
     command! Bclose call <SID>BufcloseCloseIt()
     function! <SID>BufcloseCloseIt()
        let l:currentBufNum = bufnr("%")
@@ -272,10 +277,8 @@
        endif
     endfunction
 
-" }
 
-
-" plugin installtion list {
+" - - - - - - - - - - PLUGIN LIST - - - - - - - - - - "
 
     call vundle#begin()
 
@@ -284,9 +287,6 @@
     " documentation at :help vundle
     Plugin 'gmarik/Vundle.vim'
 
-    " script library (dependency for certain plugins)
-    " documentation at :help l9
-    Plugin 'L9'
 
     " handles syntax checking
     " documentation at :help syntastic
@@ -306,11 +306,11 @@
     Plugin 'tpope/vim-fugitive'
 
     " file tree explorer
-    " activate with <leader>ne
+    " activate with <leader>nt
     " documentation at :help nerdtree
     Plugin 'scrooloose/nerdtree'
 
-    " Fuzzy finder
+    " fuzzy finder
     " activate with <leader>p
     " documentation at :help ctrlp
     Plugin 'kien/ctrlp.vim'
@@ -320,7 +320,7 @@
     " documentation at :help ag
     Plugin 'rking/ag.vim'
 
-    " enables easy line navigation
+    " enables fast line navigation
     " activate with <leader>{command}/{motion}
     " documentation at :help easymotion
     Plugin 'Lokaltog/vim-easymotion'
@@ -329,7 +329,7 @@
     " documentation at :help emmet
     Plugin 'mattn/emmet-vim'
 
-    " enables easy commenting
+    " enables fast commenting
     " activate with gcc for current line, gc for visual mode
     " documentation at :help commentary
     Plugin 'tpope/vim-commentary'
@@ -339,12 +339,14 @@
     " documentation at :help supertab
     Plugin 'ervandew/supertab'
 
+    " enables browsing of tags
     " activate with <leader>tb
     " documentation at :help tagbar
     Plugin 'majutsushi/tagbar'
 
-    " expanded repeat functionality
-    Plugin 'tpope/vim-repeat'
+    " enables fast adding, changing, and deleting of surrounding characters
+    " documentation at :help sandwich
+    Plugin 'machakann/vim-sandwich'
 
     " enables removing trailing whitespace
     " activate with <leader>fw
@@ -352,6 +354,35 @@
 
     " handles automatic closing of character pairs
     Plugin 'Townk/vim-autoclose'
+
+    " enables undo tree visualization
+    " activate with <leader>gu
+    " documentation at :help gundo
+    Plugin 'sjl/gundo.vim'
+
+    " expanded repeating functionality with
+    " activate with .
+    Plugin 'tpope/vim-repeat'
+
+    " expanded matching functionality
+    " activate with %
+    " documentation at :help matchit
+    Plugin 'tmhedberg/matchit'
+
+    " enables use of snippets
+    " documetation at :help snipmate
+    Plugin 'garbas/vim-snipmate'
+
+    " enables deleting all buffers except current one
+    " activate with :BufOnly
+    Bundle 'schickling/vim-bufonly'
+
+    " utility libraries
+    Plugin 'MarcWeber/vim-addon-mw-utils'
+    " documentation at :help tlib
+    Plugin 'tomtom/tlib_vim'
+    " documentation at :help l9
+    Plugin 'L9'
 
     " compatibility improvements
     Plugin 'othree/html5.vim'
@@ -368,10 +399,9 @@
     Plugin 'tpope/vim-rails'
 
     " colorschemes
-    Plugin 'flazz/vim-colorschemes'
-    Plugin 'altercation/vim-colors-solarized'
     Plugin 'w0ng/vim-hybrid'
+    Plugin 'flazz/vim-colorschemes'
+    Plugin 'nanotech/jellybeans.vim'
+    Plugin 'altercation/vim-colors-solarized'
 
     call vundle#end()
-
-" }
