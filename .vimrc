@@ -102,6 +102,9 @@
     " disable creation of swap files
     set noswapfile
 
+    " remember info about open buffers on close
+    set viminfo^=%
+
     " set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
 
@@ -114,10 +117,6 @@
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-
-    " remember info about open buffers on close
-    set viminfo^=%
-
 
 " - - - - - - - - - - PLUGIN SETTINGS - - - - - - - - - - "
 
@@ -139,6 +138,10 @@
     " map <leader> to space bar
     let mapleader = ' '
     let g:mapleader = ' '
+
+    " don't skip wrapped lines
+    noremap j gj
+    noremap k gk
 
     " quick save
     noremap <leader><leader>w :w<CR>
