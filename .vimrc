@@ -140,84 +140,87 @@
     let g:mapleader = ' '
 
     " quick save
-    map <leader><leader>w :w<cr>
+    noremap <leader><leader>w :w<CR>
 
     " move up/down
-    map <S-k> <C-u>
-    map <S-j> <C-d>
+    noremap <S-k> <C-u>
+    noremap <S-j> <C-d>
 
     " move to far left/right
-    map <S-l> $
-    map <S-h> 0
+    noremap <S-l> $
+    noremap <S-h> 0
 
     " move between tabs
-    map <S-Left> gT
-    map <S-Right> gt
+    noremap <S-Left> gT
+    noremap <S-Right> gt
 
     " list buffers
-    map <up> :ls<cr>
+    noremap <Up> :ls<CR>
 
     " switch between buffers
-    map <down> :e#<cr>
-    map <left> :bN<cr>
-    map <right> :bn<cr>
+    noremap <Down> :e#<CR>
+    noremap <Left> :bN<CR>
+    noremap <Right> :bn<CR>
 
     " close the current buffer
-    map <leader>db :Bclose<cr>
+    noremap <leader>db :Bclose<CR>
 
     " switch CWD to the directory of the open buffer
-    map <leader>cd :cd %:p:h<cr>:pwd<cr>
+    noremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
     " split window
-    map <S-Up> <C-w>v
-    map <S-Down> <C-w>s
+    noremap <S-Up> <C-w>v
+    noremap <S-Down> <C-w>s
     " move between splits
-    map <S-Tab> <C-w><C-w>
+    noremap <S-Tab> <C-w><C-w>
 
-    " <enter> adds new line without entering insert mode
-    map <S-Enter> O<Esc>
-    map <CR> o<Esc>
+    " add new line without entering insert mode
+    noremap <S-Enter> O<Esc>
+    noremap <CR> o<Esc>
+
+    " delete line in insert mode
+    inoremap <C-d> <Esc>ddi
 
     " search for the current selection with * or #
-    vnoremap <silent> * :call VisualSelection('f')<CR>
-    vnoremap <silent> # :call VisualSelection('b')<CR>
+    vnoremap <silent> * :call VisualSelection('f')<CR>*
+    vnoremap <silent> # :call VisualSelection('b')<CR>#
 
     " search and replace the current selection with <leader>r
     vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
     " clear highlighting
-    map <silent><leader>ch :noh<cr>
+    map <silent><leader>ch :noh<CR>
 
     " open .vimrc
-    map <silent><leader>re :e $MYVIMRC<cr>
+    nnoremap <silent><leader><leader>e :e $MYVIMRC<CR>
     " refresh vim to use current .vimrc
-    map <leader>rr :source $MYVIMRC<cr><leader>ch
+    map <leader><leader>r :source $MYVIMRC<CR><leader>ch
 
     " open/close quickfix
-    map <leader>co :copen<cr>
-    map <leader>cc :cclose<cr>
+    noremap <leader>co :copen<CR>
+    noremap <leader>cc :cclose<CR>
     " open nerdtree
-    map <leader>nt :NERDTreeToggle<cr>
+    noremap <leader>nt :NERDTreeToggle<CR>
 
     " open ctrlp
     let g:ctrlp_map = '<leader>p'
     " clear ctrlp cache
-    map <leader>cp :CtrlPClearCache<cr>
+    noremap <leader>cp :CtrlPClearCache<CR>
 
     " activate easymotion
-    map <leader> <Plug>(easymotion-prefix)
+    noremap <leader> <Plug>(easymotion-prefix)
 
     " activate emmet
-    imap <C-e> <C-y>,
+    inoremap <C-e> <C-y>,
 
     " toggle tagbar
-    map <leader>tb :TagbarToggle<cr>
+    noremap <leader>tb :TagbarToggle<CR>
 
     " remove trailing whitespace
-    map <leader>fw :FixWhitespace<cr>
+    noremap <leader>fw :FixWhitespace<CR>
 
     " toggle gundo
-    map <leader>gu :GundoToggle<cr>
+    noremap <leader>gu :GundoToggle<CR>
 
 " - - - - - - - - - - FUNCTIONS - - - - - - - - - - "
 
