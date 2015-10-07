@@ -1,10 +1,12 @@
 " - - - - - - - - - - EDITOR SETTINGS - - - - - - - - - - "
 
+" set window height
+set lines=100
+
 " set colorscheme
 set background=dark
 if has("gui_running")
     colorscheme macvim
-    set lines=90
 endif
 
 " set default working directory
@@ -209,7 +211,7 @@ noremap <leader>cc :cclose<CR>
 " open nerdtree
 noremap <leader>nt :NERDTreeToggle<CR>
 
-" open ctrlp
+" activate ctrlp
 let g:ctrlp_map = '<leader>p'
 " clear ctrlp cache
 noremap <leader>cp :CtrlPClearCache<CR>
@@ -228,6 +230,9 @@ noremap <leader>fw :FixWhitespace<CR>
 
 " toggle gundo
 noremap <leader>gu :GundoToggle<CR>
+
+" activate ultisnips
+let g:UltiSnipsExpandTrigger="<C-k>"
 
 " - - - - - - - - - - FUNCTIONS - - - - - - - - - - "
 
@@ -346,7 +351,8 @@ Plugin 'tmhedberg/matchit'
 
 " enables use of snippets
 " activate with <C-k> after typing snippet keyword
-Plugin 'garbas/vim-snipmate'
+" edit snippet list with :UltiSnipsEdit
+Plugin 'SirVer/ultisnips'
 
 " enables deleting all buffers except current one
 " activate with :BufOnly
