@@ -19,9 +19,6 @@ filetype indent on
 " enable syntax highlighting
 syntax enable
 
-" cuztomize statusline (not currently customized)
-" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
 " remove menu bar
 set guioptions-=m
 
@@ -180,9 +177,13 @@ noremap <S-Down> <C-w>s
 " move between splits
 noremap <S-Tab> <C-w><C-w>
 
+" prevent commented lines from adding comment character to new line
+map O O<Esc>xi
+map o o<Esc>xi
+
 " add new line without entering insert mode
-noremap <S-Enter> O<Esc>
-noremap <CR> o<Esc>
+map <S-Enter> O<Esc>
+map <CR> o<Esc>
 
 " add new line above cursor
 inoremap <S-Enter> <Esc>O
@@ -291,6 +292,18 @@ function! <SID>BufcloseCloseIt()
         execute("bdelete! ".l:currentBufNum)
     endif
 endfunction
+
+" clear all registers
+function! ClearRegisters()
+    let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-="*+'
+    let i=0
+    while (i<strlen(regs))
+        exec 'let @'.regs[i].'=""'
+        let i=i+1
+    endwhile
+endfunction
+
+command! ClearRegisters call ClearRegisters()
 
 
 " - - - - - - - - - - PLUGIN LIST - - - - - - - - - - "
