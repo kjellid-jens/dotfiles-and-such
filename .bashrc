@@ -1,4 +1,4 @@
-PS1="[\\u@MacBookPro] \w $ "
+PS1="\e[0;32m(\@)\e[m [\\u@MacBookPro] \w $ "
 
 set -o vi
 
