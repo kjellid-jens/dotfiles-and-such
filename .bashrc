@@ -1,4 +1,5 @@
-PS1="\e[0;32m(\@)\e[m [\\u@MacBookPro] \w $ "
+PS1="\[\e[32m\](\@)\[\e[m\] \[\e[34m\][\\u@MacBookPro]\[\e[m\]\[\e[33m\] \w \[\e[m\]$ "
+
 
 set -o vi
 
