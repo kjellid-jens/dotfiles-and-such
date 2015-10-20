@@ -178,11 +178,11 @@ noremap <S-Down> <C-w>s
 noremap <S-Tab> <C-w><C-w>
 
 " prevent commented lines from adding comment character to new line
-map O O<Esc>xi
-map o o<Esc>xi
+map O O<Esc>Xxi
+map o o<Esc>Xxi
 
 " add new line without entering insert mode
-map <S-Enter> O<Esc>
+map <S-CR> O<Esc>
 map <CR> o<Esc>
 
 " add new line above cursor
