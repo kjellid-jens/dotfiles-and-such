@@ -6,8 +6,11 @@ set -o vi
 
 # aliases
 alias vim='/usr/local/Cellar/macvim/7.4-76/MacVim.app/Contents/MacOS/Vim '
-alias cdwork='cd ~/workspace/web/from-scratch/web-app'
-alias cdhome='cd ~'
+
+alias w='cd ~/workspace'
+alias p='cd ~/workspace/web/from-scratch/web-app'
+alias h='cd ~'
+alias ..="cd .."
 
 
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
