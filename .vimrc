@@ -83,6 +83,9 @@ set t_vb=
 " always display status line
 set laststatus=2
 
+" disable concealment of quotation marks
+set conceallevel=0
+
 " turn on the wiLd menu
 set wildmenu
 
@@ -98,8 +101,12 @@ set history=500
 " show partial commands in the last line of the screen
 set showcmd
 
-" disable creation of swap files
-set noswapfile
+" Centralize backups, swapfiles and undo history
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+if exists("&undodir")
+    set undodir=~/.vim/undos
+endif
 
 " remember info about open buffers on close
 set viminfo^=%
@@ -383,6 +390,9 @@ Plugin 'Lokaltog/vim-powerline'
 
 " handles syntax checking
 Plugin 'scrooloose/syntastic'
+
+" handles error detection in javascript code
+Plugin 'Shutnik/jshint2.vim'
 
 " handles automatic closing of character pairs
 Plugin 'Townk/vim-autoclose'
