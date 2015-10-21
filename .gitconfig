@@ -1,0 +1,24 @@
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	l = log --oneline --graph
+	unstage = reset HEAD --
+[core]
+	excludesfile = /Users/JensKjellid/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[push]
+	default = simple
+[user]
+	name = Jens Kjellid
+	email = jkjellid@gmail.com
+[diff]
+	tool = meld
+[merge]
+	tool = meld
