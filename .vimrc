@@ -198,6 +198,12 @@ inoremap <S-Enter> <Esc>O
 " delete line in insert mode
 inoremap <C-d> <Esc>ddi
 
+" undo in insert mode
+inoremap <C-u> <Esc>ui
+
+" redo in insert mode
+inoremap <C-r> <Esc><C-r>i
+
 " search for the current selection with * or #
 vnoremap <silent> * :call VisualSelection('f')<CR>*
 vnoremap <silent> # :call VisualSelection('b')<CR>#
