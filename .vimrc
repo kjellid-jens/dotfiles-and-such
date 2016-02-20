@@ -101,13 +101,6 @@ set history=500
 " show partial commands in the last line of the screen
 set showcmd
 
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-if exists("&undodir")
-    set undodir=~/.vim/undos
-endif
-
 " remember info about open buffers on close
 set viminfo^=%
 
