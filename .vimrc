@@ -1,7 +1,8 @@
 " - - - - - - - - - - EDITOR SETTINGS - - - - - - - - - - "
 
-" set window height
-set lines=100
+" vundle requirements
+set nocompatible
+filetype off
 
 " set colorscheme
 set background=dark
@@ -11,10 +12,6 @@ endif
 
 " set default working directory
 cd $HOME/workspace
-
-" enable filetype plugins
-filetype plugin on
-filetype indent on
 
 " enable syntax highlighting
 syntax enable
@@ -105,7 +102,7 @@ set showcmd
 set viminfo^=%
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle//Vundle.vim
 
 " check file change every 4 seconds and reload the buffer upon detecting change
 set autoread
@@ -318,7 +315,7 @@ call vundle#begin()
 
 " handles installation of plugins
 " activate with :PluginInstall
-Plugin 'gmarik/Vundle.vim'
+ Plugin 'VundleVim/Vundle.vim'
 
 " displays git diff in sidebar
 " toggle with :GitGutterToggle
@@ -423,3 +420,6 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'cakebaker/scss-syntax.vim'
 
 call vundle#end()
+
+" enable filetype plugins
+filetype plugin indent on
