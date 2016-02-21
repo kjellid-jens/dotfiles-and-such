@@ -8,6 +8,7 @@ alias w='cd ~/workspace'
 alias p='cd ~/workspace/web/from-scratch/web-app'
 alias h='cd ~'
 alias ..="cd .."
+alias install="sudo apt-get install"
 
 
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
