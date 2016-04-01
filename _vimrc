@@ -2,14 +2,17 @@
 
 " vundle requirements
 set nocompatible
-filetype off
+"filetype off
+
+" enable filetype plugins
+filetype plugin indent on
 
 " set colorscheme
 set background=dark
 if has("gui_running")
     colorscheme macvim
 endif
-
+                       
 " set default working directory
 cd $HOME/workspace
 
@@ -100,9 +103,6 @@ set showcmd
 
 " remember info about open buffers on close
 set viminfo^=%
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle//Vundle.vim
 
 " check file change every 4 seconds and reload the buffer upon detecting change
 set autoread
@@ -311,6 +311,13 @@ command! ClearRegisters call ClearRegisters()
 
 " - - - - - - - - - - PLUGIN LIST - - - - - - - - - - "
 
+" set the runtime path to include Vundle and initialize
+if has("win32")
+    set rtp+=~/_vim/bundle//Vundle.vim
+else
+    set rtp+=~/.vim/bundle//Vundle.vim
+endif
+
 call vundle#begin()
 
 " handles installation of plugins
@@ -421,5 +428,3 @@ Plugin 'cakebaker/scss-syntax.vim'
 
 call vundle#end()
 
-" enable filetype plugins
-filetype plugin indent on
