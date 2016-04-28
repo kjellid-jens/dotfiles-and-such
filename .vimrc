@@ -11,7 +11,7 @@ set background=dark
 if has("gui_running")
     colorscheme macvim
 endif
-                       
+
 " set default working directory
 cd $HOME/workspace
 
@@ -54,6 +54,9 @@ set foldenable
 
 " use UTF-8 as character encoding
 set encoding=utf8
+
+" disable swap files
+set noswapfile
 
 " shorter messages
 set shortmess=a
@@ -142,8 +145,8 @@ noremap k gk
 noremap <leader><leader>w :w!<CR>
 
 " move up/down
-noremap <S-k> <C-u>
-noremap <S-j> <C-d>
+noremap <S-k> 10k
+noremap <S-j> 10j
 
 " move to far left/right
 noremap <S-l> $
