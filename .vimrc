@@ -1,19 +1,19 @@
 " - - - - - - - - - - EDITOR SETTINGS - - - - - - - - - - "
 
-" disable compatibility mode 
+" disable compatibility mode
 set nocompatible
 
 " enable filetype plugins
 filetype plugin indent on
 
 " set colorscheme
-set background=dark
+ set background=dark
 if has("gui_running")
-    colorscheme macvim
+ colorscheme macvim
 endif
 
 " set default working directory
-cd $HOME/workspace
+cd $HOME
 
 " enable syntax highlighting
 syntax enable
@@ -125,7 +125,6 @@ let NERDTreeShowHidden=1
 " ctrlp
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " syntastic
 let g:syntastic_check_on_open = 1
@@ -177,7 +176,7 @@ noremap <S-Down> <C-w>s
 noremap <S-Tab> <C-w><C-w>
 
 " prevent commented lines from adding comment character to new line
-map O O<Esc>Xxi
+"map O O<Esc>Xxi
 map o o<Esc>Xxi
 
 " add new line without entering insert mode
@@ -225,57 +224,13 @@ noremap <leader>cp :CtrlPClearCache<CR>
 " activate easymotion
 map <leader> <Plug>(easymotion-prefix)
 
-" activate emmet
-imap <C-j> <C-y>,
-
 " toggle tagbar
 noremap <leader>tb :TagbarToggle<CR>
 
 " remove trailing whitespace
 noremap <leader>fw :FixWhitespace<CR>
 
-" toggle gundo
-noremap <leader>gu :GundoToggle<CR>
-
-" activate ultisnips
-let g:UltiSnipsExpandTrigger="<C-k>"
-
 " - - - - - - - - - - FUNCTIONS - - - - - - - - - - "
-
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
-function! VisualSelection(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-" returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
 
 " don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
@@ -315,9 +270,9 @@ command! ClearRegisters call ClearRegisters()
 
 " set the runtime path to include Vundle and initialize
 if has("win32")
-    set rtp+=~/_vim/bundle//Vundle.vim
+    set rtp+=~/_vim/bundle/Vundle.vim
 else
-    set rtp+=~/.vim/bundle//Vundle.vim
+    set rtp+=~/.vim/bundle/Vundle.vim
 endif
 
 call vundle#begin()
@@ -362,10 +317,6 @@ Plugin 'majutsushi/tagbar'
 " activate with <leader>fw
 Plugin 'bronson/vim-trailing-whitespace'
 
-" enables undo tree visualization
-" activate with <leader>gu
-Plugin 'sjl/gundo.vim'
-
 " expanded repeating functionality with
 " activate with .
 Plugin 'tpope/vim-repeat'
@@ -373,11 +324,6 @@ Plugin 'tpope/vim-repeat'
 " expanded matching functionality
 " activate with %
 Plugin 'tmhedberg/matchit'
-
-" enables use of snippets
-" activate with <C-k> after typing snippet keyword
-" edit snippet list with :UltiSnipsEdit
-Plugin 'SirVer/ultisnips'
 
 " enables deleting all buffers except current one
 " activate with :BufOnly
@@ -429,4 +375,3 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'cakebaker/scss-syntax.vim'
 
 call vundle#end()
-
