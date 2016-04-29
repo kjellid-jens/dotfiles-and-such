@@ -1,17 +1,17 @@
 [alias]
-	s = status -s
-	l = log --oneline --graph
-        d = diff
-	c = commit -m
-        ac = add . && git commit -m
-	rm = reset HEAD
-	br = branch
-	co = checkout
-        cob = checkout -b
-        rao = remote add origin
+    s = status -s
+    l = log --oneline --graph
+    d = diff
+    a = add -A
+    c = commit -m
+    rm = reset HEAD
+    br = branch
+    co = checkout
+    cob = checkout -b
+    rao = remote add origin
 
 [push]
-	default = simple
+    default = simple
 [user]
-	name = Jens Kjellid
-	email = jkjellid@gmail.com
+    name = Jens Kjellid
+    email = jkjellid@gmail.com
