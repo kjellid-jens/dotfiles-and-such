@@ -1,10 +1,14 @@
 [alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
+	s = status -s
 	l = log --oneline --graph
-	unstage = reset HEAD --
+        d = diff
+	c = commit -m
+        ac = add . && git commit -m
+	rm = reset HEAD
+	br = branch
+	co = checkout
+        cob = checkout -b
+        rao = remote add origin
 
 [push]
 	default = simple
