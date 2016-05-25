@@ -1,19 +1,19 @@
 " - - - - - - - - - - EDITOR SETTINGS - - - - - - - - - - "
 
-" disable compatibility mode 
+" disable compatibility mode
 set nocompatible
 
 " enable filetype plugins
 filetype plugin indent on
 
 " set colorscheme
-set background=dark
+ set background=dark
 if has("gui_running")
-    colorscheme macvim
+ colorscheme macvim
 endif
 
 " set default working directory
-cd $HOME/workspace
+cd $HOME
 
 " enable syntax highlighting
 syntax enable
@@ -181,7 +181,7 @@ noremap <S-Down> <C-w>s
 noremap <S-Tab> <C-w><C-w>
 
 " prevent commented lines from adding comment character to new line
-map O O<Esc>Xxi
+"map O O<Esc>Xxi
 map o o<Esc>Xxi
 
 " add new line without entering insert mode
@@ -225,7 +225,8 @@ map <silent><leader> <Plug>(easymotion-prefix)
 " activate emmet
 imap <C-j> <C-y>,
 " toggle tagbar
-noremap <leader>tb :TagbarToggle<CR>
+
+noremap <silent><leader>tb :TagbarToggle<CR>
 
 " remove trailing whitespace
 noremap <silent><leader>fw :FixWhitespace<CR>
@@ -233,11 +234,50 @@ noremap <silent><leader>fw :FixWhitespace<CR>
 " toggle gundo
 noremap <silent><leader>gu :GundoToggle<CR>
 
+" - - - - - - - - - - FUNCTIONS - - - - - - - - - - "
+
+" don't close window, when deleting a buffer
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+    let l:currentBufNum = bufnr("%")
+    let l:alternateBufNum = bufnr("#")
+
+    if buflisted(l:alternateBufNum)
+        buffer #
+    else
+        bnext
+    endif
+
+    if bufnr("%") == l:currentBufNum
+        new
+    endif
+
+    if buflisted(l:currentBufNum)
+        execute("bdelete! ".l:currentBufNum)
+    endif
+endfunction
+
+" clear all registers
+function! ClearRegisters()
+    let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-="*+'
+    let i=0
+    while (i<strlen(regs))
+        exec 'let @'.regs[i].'=""'
+        let i=i+1
+    endwhile
+endfunction
+
+command! ClearRegisters call ClearRegisters()
+
+
+" - - - - - - - - - - PLUGIN LIST - - - - - - - - - - "
+>>>>>>> 0583fb0c55731d90700243e8ac12d21d41cbd3a4
+
 " set the runtime path to include Vundle and initialize
 if has("win32")
-    set rtp+=~/_vim/bundle//Vundle.vim
+    set rtp+=~/_vim/bundle/Vundle.vim
 else
-    set rtp+=~/.vim/bundle//Vundle.vim
+    set rtp+=~/.vim/bundle/Vundle.vim
 endif
 
 call vundle#begin()
@@ -281,10 +321,6 @@ Plugin 'majutsushi/tagbar'
 " enables removing trailing whitespace
 " activate with <leader>fw
 Plugin 'bronson/vim-trailing-whitespace'
-
-" enables undo tree visualization
-" activate with <leader>gu
-Plugin 'sjl/gundo.vim'
 
 " expanded repeating functionality with
 " activate with .
@@ -344,4 +380,3 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'cakebaker/scss-syntax.vim'
 
 call vundle#end()
-
