@@ -43,8 +43,11 @@ set smarttab
 set autoindent
 set smartindent
 
-" show line numbers
+" show document line number at current line.
 set number
+
+" use relative line numbers
+set relativenumber
 
 " enable backspace text deletion
 set backspace=indent,eol,start
@@ -125,7 +128,6 @@ let NERDTreeShowHidden=1
 " ctrlp
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " syntastic
 let g:syntastic_check_on_open = 1
@@ -145,8 +147,10 @@ noremap k gk
 noremap <leader><leader>w :w!<CR>
 
 " move up/down
-noremap <S-k> 10k
-noremap <S-j> 10j
+noremap <S-k> 5k
+noremap <S-j> 5j
+noremap <leader><S-j> 25j
+noremap <leader><S-k> 25k
 
 " move to far left/right
 noremap <S-l> $
@@ -165,7 +169,7 @@ noremap <Left> :bN<CR>
 noremap <Right> :bn<CR>
 
 " close the current buffer
-noremap <leader>db :Bclose<CR>
+noremap <leader>bc :Bclose<CR>
 
 " switch CWD to the directory of the open buffer
 noremap <leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -196,122 +200,38 @@ inoremap <C-u> <Esc>ui
 " redo in insert mode
 inoremap <C-r> <Esc><C-r>i
 
-" search for the current selection with * or #
-vnoremap <silent> * :call VisualSelection('f')<CR>*
-vnoremap <silent> # :call VisualSelection('b')<CR>#
-
-" search and replace the current selection with <leader>r
-vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-
 " open .vimrc in new tab
 nnoremap <silent><leader><leader>e :tabe $MYVIMRC<CR>
 " refresh vim to use current .vimrc
-map <leader><leader>r :source $MYVIMRC<CR><leader>ch
+map <silent><leader><leader>r :source $MYVIMRC<CR><leader>ch
 
 " clear highlighting
 map <silent><leader>ch :noh<CR>
 
 " open/close quickfix
-noremap <leader>co :copen<CR>
-noremap <leader>cc :cclose<CR>
+noremap <silent><leader>co :copen<CR>
+noremap <silent><leader>cc :cclose<CR>
 " open nerdtree
-noremap <leader>nt :NERDTreeToggle<CR>
+noremap <silent><leader>nt :NERDTreeToggle<CR>
 
 " activate ctrlp
 let g:ctrlp_map = '<leader>p'
 " clear ctrlp cache
-noremap <leader>cp :CtrlPClearCache<CR>
+noremap <silent><leader>cp :CtrlPClearCache<CR>
 
 " activate easymotion
-map <leader> <Plug>(easymotion-prefix)
+map <silent><leader> <Plug>(easymotion-prefix)
 
 " activate emmet
 imap <C-j> <C-y>,
-
 " toggle tagbar
 noremap <leader>tb :TagbarToggle<CR>
 
 " remove trailing whitespace
-noremap <leader>fw :FixWhitespace<CR>
+noremap <silent><leader>fw :FixWhitespace<CR>
 
 " toggle gundo
-noremap <leader>gu :GundoToggle<CR>
-
-" activate ultisnips
-let g:UltiSnipsExpandTrigger="<C-k>"
-
-" - - - - - - - - - - FUNCTIONS - - - - - - - - - - "
-
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction
-
-function! VisualSelection(direction) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-" returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
-
-" don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
-
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
-
-    if bufnr("%") == l:currentBufNum
-        new
-    endif
-
-    if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
-    endif
-endfunction
-
-" clear all registers
-function! ClearRegisters()
-    let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-="*+'
-    let i=0
-    while (i<strlen(regs))
-        exec 'let @'.regs[i].'=""'
-        let i=i+1
-    endwhile
-endfunction
-
-command! ClearRegisters call ClearRegisters()
-
-
-" - - - - - - - - - - PLUGIN LIST - - - - - - - - - - "
+noremap <silent><leader>gu :GundoToggle<CR>
 
 " set the runtime path to include Vundle and initialize
 if has("win32")
@@ -373,11 +293,6 @@ Plugin 'tpope/vim-repeat'
 " expanded matching functionality
 " activate with %
 Plugin 'tmhedberg/matchit'
-
-" enables use of snippets
-" activate with <C-k> after typing snippet keyword
-" edit snippet list with :UltiSnipsEdit
-Plugin 'SirVer/ultisnips'
 
 " enables deleting all buffers except current one
 " activate with :BufOnly
